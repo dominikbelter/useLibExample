@@ -18,20 +18,19 @@ int main()
         using namespace tutorial;
 
         // create LabMate robot
-        std::unique_ptr<Robot> robotLabMate;
-        robotLabMate.reset(new LabMate());
+        std::unique_ptr<Robot> robotLabMate = std::make_unique<LabMate>();
 
         // create Messor II robot
-        std::unique_ptr<Robot> robotMessorII;
-        robotMessorII.reset(new MessorII());
+        std::unique_ptr<Robot> robotMessorII = std::make_unique<MessorII>();
 
         // new configuration of the MessorII robot
-        std::vector<double> newConf {0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.1, 0.2, 0.3, 0.1, 0.2, 0.3,};
-        robotMessorII->move2conf(newConf);
+        robotMessorII->move2conf(
+        {0.1, 0.2, 0.3, 0.1, 0.2, 0.3,
+         0.1, 0.2, 0.3, 0.1, 0.2, 0.3,
+         0.1, 0.2, 0.3, 0.1, 0.2, 0.3});
 
         // new configuration of the LabMate robot
-        std::vector<double> newConfLabMate {1.1, 1.2, 1.3};
-        robotLabMate->move2conf(newConfLabMate);
+        robotLabMate->move2conf({1.1, 1.2});
 
         getchar();
     }
